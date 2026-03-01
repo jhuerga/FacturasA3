@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>A3 Casa Manolo – Facturas</title>
 
-<!-- QR Library -->
+<!-- QR Library (MODERNA Y COMPATIBLE) -->
 <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 
 <!-- Fonts -->
@@ -511,7 +511,10 @@ input:focus, select:focus {
     <div class="card" id="resultado">
       <h2>✅ Factura Lista</h2>
       <div class="num-fact-display" id="numFactDisplay"></div>
-      <div id="qrcode" style="margin: 16px auto;"></div>
+
+      <!-- QR EN CANVAS (CORRECTO) -->
+      <canvas id="qrcode" style="margin: 16px auto; display:block;"></canvas>
+
       <div class="url-factura" id="urlDisplay"></div>
       <button class="btn-nueva" onclick="nuevaFactura()">➕ Nueva Factura</button>
     </div>
@@ -648,7 +651,7 @@ function fmt(v) {
 const AÑO = new Date().getFullYear();
 const LS_KEY = 'casamanolo_numfact_' + AÑO;
 
-function getNumActual() { return parseInt(localStorage.getItem(LS_KEY) || '0'); }
+function getNumActual() { return parseInt(locallocalStorage.getItem(LS_KEY) || '0'); }
 function getNumSiguiente() { const n = getNumActual() + 1; localStorage.setItem(LS_KEY, n); return n; }
 function formatNum(n) { return AÑO + '_' + String(n).padStart(4, '0'); }
 
@@ -735,23 +738,26 @@ function generarFactura() {
     + '&men=' + menus
     + '&pag=' + encodeURIComponent(formaPago);
 
-  document.getElementById('qrcode').innerHTML = '';
+  // LIMPIAR CANVAS
+  const canvas = document.getElementById('qrcode');
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+  // GENERAR QR
   QRCode.toCanvas(
-       document.getElementById('qrcode'),
-       url,
-      {
-         width: 230,
-        color: {
+    canvas,
+    url,
+    {
+      width: 230,
+      color: {
         dark: '#d4af37',
         light: '#0d1117'
-        }
+      }
     },
     function (error) {
       if (error) console.error(error);
     }
   );
-
 
   document.getElementById('numFactDisplay').textContent = 'Factura: ' + numStr;
   document.getElementById('urlDisplay').textContent = url;
