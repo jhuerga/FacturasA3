@@ -289,8 +289,8 @@
       <h2>🔢 Número de Factura</h2>
       <div>
         <label>Nº Factura (automático)</label>
-        <div class="num-row">
-          <input type="text" id="numFactura" readonly>
+        
+          <div id="numFactura" style="font-size:1.1rem;font-weight:700;color:#1B2A4A;letter-spacing:1px;padding:6px 0;"></div>
           <button class="btn-sm" onclick="resetNumFactura()">↺ Reiniciar</button>
         </div>
       </div>
@@ -530,7 +530,7 @@ function formatNum(n)     { return AÑO + '_' + String(n).padStart(4, '0'); }
 
 function mostrarNumActual() {
   const siguiente = getNumActual() + 1;
-  document.getElementById('numFactura').value = formatNum(siguiente);
+  document.getElementById('numFactura').textContent = formatNum(siguiente);
 }
 
 function resetNumFactura() {
