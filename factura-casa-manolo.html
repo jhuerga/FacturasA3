@@ -27,6 +27,7 @@
     color: var(--text);
   }
 
+  /* ── HEADER ── */
   header {
     background: var(--navy);
     padding: 16px 28px;
@@ -35,31 +36,18 @@
     gap: 16px;
     border-bottom: 3px solid var(--gold);
   }
-
   header img {
     width: 58px; height: 58px;
     border-radius: 50%;
     border: 2px solid var(--gold);
     object-fit: cover;
   }
-
-  header .hinfo h1 {
-    font-family: 'Playfair Display', serif;
-    color: #fff;
-    font-size: 1.25rem;
-  }
-
-  header .hinfo p {
-    color: var(--gold);
-    font-size: 0.72rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-top: 2px;
-    font-weight: 300;
-  }
+  header .hinfo h1 { font-family: 'Playfair Display', serif; color: #fff; font-size: 1.25rem; }
+  header .hinfo p  { color: var(--gold); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; font-weight: 300; }
 
   .container { max-width: 660px; margin: 28px auto; padding: 0 18px; }
 
+  /* ── CARD ── */
   .card {
     background: var(--white);
     border-radius: 12px;
@@ -68,7 +56,6 @@
     border: 1px solid var(--border);
     margin-bottom: 20px;
   }
-
   .card h2 {
     font-family: 'Playfair Display', serif;
     color: var(--navy);
@@ -78,10 +65,9 @@
     border-bottom: 2px solid var(--gold);
   }
 
-  .form-grid { display: grid; gap: 14px; }
-
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-
+  /* ── FORM ── */
+  .form-grid  { display: grid; gap: 14px; }
+  .form-row   { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
 
   label {
@@ -93,7 +79,6 @@
     letter-spacing: 0.8px;
     margin-bottom: 5px;
   }
-
   input, select {
     width: 100%;
     padding: 10px 12px;
@@ -105,7 +90,6 @@
     background: #FAFAF8;
     transition: border-color 0.2s, box-shadow 0.2s;
   }
-
   input:focus, select:focus {
     outline: none;
     border-color: var(--gold);
@@ -115,7 +99,6 @@
 
   .num-row { display: flex; gap: 8px; align-items: flex-end; }
   .num-row input { flex: 1; }
-
   .btn-sm {
     padding: 10px 12px;
     background: transparent;
@@ -130,7 +113,7 @@
   }
   .btn-sm:hover { border-color: var(--navy); color: var(--navy); }
 
-  /* Totales */
+  /* ── TOTALES ── */
   .totales {
     background: var(--cream);
     border-radius: 10px;
@@ -138,29 +121,11 @@
     border: 1px solid var(--border);
     margin-top: 6px;
   }
-  .tot-linea {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.86rem;
-    padding: 3px 0;
-    color: var(--muted);
-  }
-  .tot-linea.total {
-    font-weight: 700;
-    color: var(--navy);
-    font-size: 0.98rem;
-    border-top: 1px solid var(--border);
-    margin-top: 8px;
-    padding-top: 10px;
-  }
+  .tot-linea { display: flex; justify-content: space-between; font-size: 0.86rem; padding: 3px 0; color: var(--muted); }
+  .tot-linea.total { font-weight: 700; color: var(--navy); font-size: 0.98rem; border-top: 1px solid var(--border); margin-top: 8px; padding-top: 10px; }
 
-  /* Pago */
-  .pago-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px;
-    margin-top: 6px;
-  }
+  /* ── PAGO ── */
+  .pago-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 6px; }
   .pago-btn {
     padding: 12px 8px;
     border: 2px solid var(--border);
@@ -182,7 +147,7 @@
   .pago-btn:hover { border-color: var(--gold); color: var(--navy); }
   .pago-btn.active { border-color: var(--navy); background: var(--navy); color: white; }
 
-  /* Botón generar */
+  /* ── BOTÓN GENERAR ── */
   .btn-generar {
     width: 100%;
     padding: 15px;
@@ -204,27 +169,11 @@
   .btn-generar:active { transform: scale(0.99); }
   .gold { color: var(--gold); }
 
-  /* Resultado QR */
+  /* ── RESULTADO ── */
   #resultado { display: none; text-align: center; }
-  #resultado h2 {
-    font-family: 'Playfair Display', serif;
-    color: var(--navy);
-    font-size: 1.05rem;
-    margin-bottom: 4px;
-  }
-  #resultado .sub {
-    color: var(--muted);
-    font-size: 0.82rem;
-    margin-bottom: 20px;
-  }
-  #qrcode {
-    display: inline-block;
-    padding: 14px;
-    background: white;
-    border: 2px solid var(--border);
-    border-radius: 12px;
-    margin-bottom: 16px;
-  }
+  #resultado h2 { font-family: 'Playfair Display', serif; color: var(--navy); font-size: 1.05rem; margin-bottom: 4px; }
+  .sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 20px; }
+  #qrcode { display: inline-block; padding: 14px; background: white; border: 2px solid var(--border); border-radius: 12px; margin-bottom: 16px; }
   .num-fact-display {
     display: inline-block;
     background: var(--navy);
@@ -234,7 +183,17 @@
     letter-spacing: 1px;
     padding: 5px 16px;
     border-radius: 20px;
-    margin-bottom: 18px;
+    margin-bottom: 14px;
+  }
+  .url-factura {
+    font-size: 0.72rem;
+    color: var(--muted);
+    word-break: break-all;
+    margin-bottom: 16px;
+    padding: 8px 12px;
+    background: var(--cream);
+    border-radius: 8px;
+    border: 1px solid var(--border);
   }
   .btn-nueva {
     display: inline-block;
@@ -252,398 +211,436 @@
   }
   .btn-nueva:hover { background: var(--navy); color: white; }
 
-  .pie { font-size: 0.74rem; color: var(--muted); text-align: center; padding: 8px 0; line-height: 1.8; }
+  /* ── VISTA FACTURA (modo cliente) ── */
+  #vista-factura { display: none; }
+  .fact { max-width: 640px; margin: 0 auto; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.12); }
+  .fact-head { background: #1B2A4A; color: white; padding: 22px 26px; display: flex; align-items: center; gap: 16px; border-bottom: 3px solid #C9A84C; }
+  .fact-head img { width: 58px; height: 58px; border-radius: 50%; border: 2px solid #C9A84C; object-fit: cover; }
+  .fact-head .ht h1 { font-family: 'Playfair Display', serif; font-size: 1.15rem; margin: 0; }
+  .fact-head .ht p  { font-size: 0.7rem; color: #C9A84C; margin: 3px 0 0; letter-spacing: 1.5px; text-transform: uppercase; }
+  .fact-body { padding: 22px 26px; }
+  .num-fecha { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 8px; }
+  .num-badge { background: #1B2A4A; color: white; padding: 5px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; letter-spacing: 1px; }
+  .f-fecha { font-size: 0.82rem; color: #888; }
+  .bloques { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .bloque { border: 1px solid #e0ddd5; border-radius: 8px; padding: 12px 16px; }
+  .bloque h3 { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #C9A84C; margin-bottom: 6px; font-weight: 700; }
+  .bloque p  { font-size: 0.84rem; color: #333; margin: 2px 0; line-height: 1.5; }
+  .f-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  .f-table thead tr { background: #1B2A4A; color: white; }
+  .f-table th { padding: 9px 12px; text-align: left; font-size: 0.76rem; text-transform: uppercase; letter-spacing: .5px; }
+  .f-table th:last-child, .f-table td:last-child { text-align: right; }
+  .f-table td { padding: 10px 12px; border-bottom: 1px solid #ece9e2; font-size: 0.84rem; }
+  .resumen { background: #f8f5ef; border-radius: 8px; padding: 14px 18px; }
+  .res-linea { display: flex; justify-content: space-between; font-size: 0.84rem; padding: 3px 0; color: #666; }
+  .res-linea.total { font-weight: 700; color: #1B2A4A; font-size: 0.98rem; border-top: 2px solid #C9A84C; margin-top: 8px; padding-top: 10px; }
+  .pago-badge { display: inline-block; background: #e8f4ed; color: #2A7C5B; padding: 4px 14px; border-radius: 20px; font-size: 0.76rem; font-weight: 700; margin-top: 12px; }
+  .fact-pie { text-align: center; font-size: 0.7rem; color: #aaa; padding: 14px 22px; border-top: 1px solid #ece9e2; line-height: 1.9; }
+
+  .btn-print {
+    display: block;
+    margin: 16px auto 0;
+    padding: 11px 28px;
+    background: var(--navy);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 0.88rem;
+    cursor: pointer;
+  }
+
+  .pie { font-size: 0.74rem; color: var(--muted); text-align: center; padding: 8px 0 20px; line-height: 1.8; }
+
+  @media print {
+    header, .btn-print, .pie { display: none !important; }
+    body { background: white; }
+    .fact { box-shadow: none; }
+  }
 
   @media(max-width:480px) {
     .form-row, .form-row-3 { grid-template-columns: 1fr; }
+    .bloques { grid-template-columns: 1fr; }
     .card { padding: 20px 16px; }
   }
 </style>
 </head>
 <body>
 
+<!-- ════════════════════════════════════════════
+     CABECERA (siempre visible)
+════════════════════════════════════════════ -->
 <header>
-  <img src="logo_casamanolo.png" alt="Logo Casa Manolo" onerror="this.style.display='none'">
+  <img src="logo_casamanolo.png" alt="Logo" onerror="this.style.display='none'">
   <div class="hinfo">
     <h1>A3 Casa Manolo SL</h1>
-    <p>Generador de Facturas</p>
+    <p id="header-subtitle">Generador de Facturas</p>
   </div>
 </header>
 
-<div class="container">
+<!-- ════════════════════════════════════════════
+     MODO CAMARERO – Formulario
+════════════════════════════════════════════ -->
+<div id="modo-camarero">
+  <div class="container">
 
-  <!-- FORMULARIO -->
-  <div class="card" id="formulario">
-    <h2>🔢 Número de Factura</h2>
-    <div class="form-grid">
+    <div class="card">
+      <h2>🔢 Número de Factura</h2>
       <div>
-        <label>Nº Factura</label>
+        <label>Nº Factura (automático)</label>
         <div class="num-row">
           <input type="text" id="numFactura" readonly>
-          <button class="btn-sm" onclick="resetNumFactura()" title="Reiniciar contador">↺ Reiniciar</button>
+          <button class="btn-sm" onclick="resetNumFactura()">↺ Reiniciar</button>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="card">
-    <h2>👤 Datos del Cliente</h2>
-    <div class="form-grid">
-      <div>
-        <label>Nombre / Razón Social *</label>
-        <input type="text" id="nombreCliente" placeholder="Nombre del cliente">
-      </div>
-      <div>
-        <label>CIF / NIF *</label>
-        <input type="text" id="cifCliente" placeholder="B12345678">
-      </div>
-      <div>
-        <label>Calle y Número *</label>
-        <input type="text" id="calleCliente" placeholder="Calle Mayor, 10">
-      </div>
-      <div class="form-row-3">
+    <div class="card">
+      <h2>👤 Datos del Cliente</h2>
+      <div class="form-grid">
         <div>
-          <label>C.P. *</label>
-          <input type="text" id="cpCliente" placeholder="28001" maxlength="5">
+          <label>Nombre / Razón Social *</label>
+          <input type="text" id="nombreCliente" placeholder="Nombre del cliente">
         </div>
         <div>
-          <label>Población *</label>
-          <input type="text" id="pobCliente" placeholder="Madrid">
+          <label>CIF / NIF *</label>
+          <input type="text" id="cifCliente" placeholder="B12345678">
         </div>
         <div>
-          <label>Provincia *</label>
-          <input type="text" id="provCliente" placeholder="Madrid">
+          <label>Calle y Número *</label>
+          <input type="text" id="calleCliente" placeholder="Calle Mayor, 10">
+        </div>
+        <div class="form-row-3">
+          <div>
+            <label>C.P. *</label>
+            <input type="text" id="cpCliente" placeholder="28001" maxlength="5">
+          </div>
+          <div>
+            <label>Población *</label>
+            <input type="text" id="pobCliente" placeholder="Madrid">
+          </div>
+          <div>
+            <label>Provincia *</label>
+            <input type="text" id="provCliente" placeholder="Madrid">
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="card">
-    <h2>🍽️ Detalle de la Factura</h2>
-    <div class="form-grid">
-      <div class="form-row">
-        <div>
-          <label>Total Factura (IVA incluido) € *</label>
-          <input type="number" id="totalIva" placeholder="0.00" step="0.01" min="0" oninput="calcularTotales()">
+    <div class="card">
+      <h2>🍽️ Detalle de la Factura</h2>
+      <div class="form-grid">
+        <div class="form-row">
+          <div>
+            <label>Total con IVA incluido (€) *</label>
+            <input type="number" id="totalIva" placeholder="0.00" step="0.01" min="0" oninput="calcularTotales()">
+          </div>
+          <div>
+            <label>Número de Menús *</label>
+            <input type="number" id="numMenus" placeholder="0" min="1" oninput="calcularTotales()">
+          </div>
         </div>
-        <div>
-          <label>Número de Menús *</label>
-          <input type="number" id="numMenus" placeholder="0" min="1" oninput="calcularTotales()">
-        </div>
-      </div>
-
-      <div class="totales" id="totalesBox" style="display:none">
-        <div class="tot-linea">
-          <span id="linea-desc">— Menús</span>
-          <span id="linea-importe">—</span>
-        </div>
-        <div class="tot-linea">
-          <span>Base Imponible</span>
-          <span id="base-imponible">—</span>
-        </div>
-        <div class="tot-linea">
-          <span>IVA (10%)</span>
-          <span id="importe-iva">—</span>
-        </div>
-        <div class="tot-linea total">
-          <span>Total Factura</span>
-          <span id="total-final">—</span>
+        <div class="totales" id="totalesBox" style="display:none">
+          <div class="tot-linea">
+            <span id="linea-desc">—</span>
+            <span id="linea-importe">—</span>
+          </div>
+          <div class="tot-linea"><span>Base Imponible</span><span id="base-imponible">—</span></div>
+          <div class="tot-linea"><span>IVA (10%)</span><span id="importe-iva">—</span></div>
+          <div class="tot-linea total"><span>Total Factura</span><span id="total-final">—</span></div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="card">
-    <h2>💳 Forma de Pago</h2>
-    <div class="pago-grid">
-      <button class="pago-btn" onclick="seleccionarPago('Tarjeta', this)">
-        <span class="ico">💳</span> Tarjeta
-      </button>
-      <button class="pago-btn" onclick="seleccionarPago('Transferencia', this)">
-        <span class="ico">🏦</span> Transferencia
-      </button>
-      <button class="pago-btn" onclick="seleccionarPago('Metálico', this)">
-        <span class="ico">💵</span> Metálico
-      </button>
+    <div class="card">
+      <h2>💳 Forma de Pago</h2>
+      <div class="pago-grid">
+        <button class="pago-btn" onclick="seleccionarPago('Tarjeta', this)">
+          <span class="ico">💳</span> Tarjeta
+        </button>
+        <button class="pago-btn" onclick="seleccionarPago('Transferencia', this)">
+          <span class="ico">🏦</span> Transferencia
+        </button>
+        <button class="pago-btn" onclick="seleccionarPago('Metálico', this)">
+          <span class="ico">💵</span> Metálico
+        </button>
+      </div>
     </div>
+
+    <button class="btn-generar" onclick="generarFactura()">
+      <span class="gold">▶</span> Generar QR de Factura
+    </button>
+
+    <!-- Resultado QR -->
+    <div class="card" id="resultado" style="margin-top:20px; display:none">
+      <h2>✅ Factura Lista</h2>
+      <div class="num-fact-display" id="numFactDisplay"></div><br>
+      <p class="sub">El cliente escanea el QR con su móvil y abre la factura al instante.</p>
+      <div id="qrcode"></div>
+      <div class="url-factura" id="urlDisplay"></div>
+      <br>
+      <button class="btn-nueva" onclick="nuevaFactura()">➕ Nueva Factura</button>
+    </div>
+
+    <div class="pie">
+      A3 Casa Manolo SL · B06994305<br>
+      Calle Alicante 4 · 21400 Ayamonte (Huelva)
+    </div>
+
   </div>
+</div>
 
-  <button class="btn-generar" onclick="generarFactura()">
-    <span class="gold">▶</span> Generar QR de Factura
-  </button>
-
-  <!-- RESULTADO -->
-  <div class="card" id="resultado" style="margin-top:20px">
-    <h2>✅ Factura Lista</h2>
-    <div class="num-fact-display" id="numFactDisplay"></div><br>
-    <p class="sub">El cliente escanea el QR con su móvil y obtiene el PDF de la factura al instante.</p>
-    <div id="qrcode"></div>
-    <br>
-    <button class="btn-nueva" onclick="nuevaFactura()">➕ Nueva Factura</button>
+<!-- ════════════════════════════════════════════
+     MODO CLIENTE – Vista de la factura
+════════════════════════════════════════════ -->
+<div id="vista-factura">
+  <div class="container">
+    <div class="fact">
+      <div class="fact-head">
+        <img src="logo_casamanolo.png" alt="Logo" onerror="this.style.display='none'">
+        <div class="ht">
+          <h1>A3 Casa Manolo SL</h1>
+          <p>Restaurante · Ayamonte</p>
+        </div>
+      </div>
+      <div class="fact-body">
+        <div class="num-fecha">
+          <span class="num-badge" id="f-num"></span>
+          <span class="f-fecha" id="f-fecha"></span>
+        </div>
+        <div class="bloques">
+          <div class="bloque">
+            <h3>Emisor</h3>
+            <p><strong>A3 Casa Manolo SL</strong></p>
+            <p>CIF: B06994305</p>
+            <p>Calle Alicante 4</p>
+            <p>21400 Ayamonte (Huelva)</p>
+          </div>
+          <div class="bloque">
+            <h3>Cliente</h3>
+            <p><strong id="f-nombre"></strong></p>
+            <p id="f-cif"></p>
+            <p id="f-calle"></p>
+            <p id="f-cpobprov"></p>
+          </div>
+        </div>
+        <table class="f-table">
+          <thead>
+            <tr>
+              <th>Uds.</th>
+              <th>Descripción</th>
+              <th>P. Unit.</th>
+              <th>Importe</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="f-menus"></td>
+              <td>Menús</td>
+              <td id="f-punit"></td>
+              <td id="f-total-bruto"></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="resumen">
+          <div class="res-linea"><span>Base Imponible</span><span id="f-base"></span></div>
+          <div class="res-linea"><span>IVA (10%)</span><span id="f-iva"></span></div>
+          <div class="res-linea total"><span>Total Factura</span><span id="f-total"></span></div>
+        </div>
+        <div><span class="pago-badge" id="f-pago"></span></div>
+      </div>
+      <div class="fact-pie">
+        A3 Casa Manolo SL · B06994305 · Calle Alicante 4 · 21400 Ayamonte (Huelva)<br>
+        Documento generado electrónicamente
+      </div>
+    </div>
+    <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Guardar PDF</button>
   </div>
-
-  <div class="pie">
-    A3 Casa Manolo SL · B06994305<br>
-    Calle Alicante 4 · 21400 Ayamonte (Huelva)
-  </div>
-
 </div>
 
 <script>
-  // ── Estado global ──────────────────────────────
-  let formaPago = '';
+// ═══════════════════════════════════════
+// BASE URL – GitHub Pages
+// ═══════════════════════════════════════
+const BASE_URL = 'https://jhuerga.github.io/FacturasA3/factura-casa-manolo.html';
 
-  // ── Número de factura con localStorage ─────────
-  const AÑO = new Date().getFullYear();
-  const LS_KEY = 'casamanolo_numfact_' + AÑO;
+// ═══════════════════════════════════════
+// DETECTAR MODO: ¿hay parámetros en la URL?
+// ═══════════════════════════════════════
+const params = new URLSearchParams(window.location.search);
 
-  function getNumActual() {
-    const n = parseInt(localStorage.getItem(LS_KEY) || '0');
-    return n;
-  }
+if (params.has('n')) {
+  // ── MODO CLIENTE: mostrar factura ──
+  document.getElementById('modo-camarero').style.display = 'none';
+  document.getElementById('vista-factura').style.display = 'block';
+  document.getElementById('header-subtitle').textContent = 'Factura';
 
-  function getNumSiguiente() {
-    const n = getNumActual() + 1;
-    localStorage.setItem(LS_KEY, n);
-    return n;
-  }
+  const num    = params.get('n')   || '';
+  const fecha  = params.get('f')   || '';
+  const nombre = params.get('nom') || '';
+  const cif    = params.get('cif') || '';
+  const calle  = params.get('cal') || '';
+  const cp     = params.get('cp')  || '';
+  const pob    = params.get('pob') || '';
+  const prov   = params.get('pro') || '';
+  const total  = parseFloat(params.get('tot') || 0);
+  const menus  = parseInt(params.get('men')   || 0);
+  const pago   = params.get('pag') || '';
 
-  function formatNum(n) {
-    return AÑO + '_' + String(n).padStart(4, '0');
-  }
+  const base     = total / 1.10;
+  const iva      = total - base;
+  const precioU  = menus > 0 ? total / menus : 0;
 
-  function mostrarNumActual() {
-    const n = getNumActual();
-    const siguiente = n + 1;
-    document.getElementById('numFactura').value = formatNum(siguiente) + ' (siguiente)';
-  }
+  document.getElementById('f-num').textContent        = 'Factura ' + num;
+  document.getElementById('f-fecha').textContent      = 'Fecha: ' + fecha;
+  document.getElementById('f-nombre').textContent     = nombre;
+  document.getElementById('f-cif').textContent        = 'CIF/NIF: ' + cif;
+  document.getElementById('f-calle').textContent      = calle;
+  document.getElementById('f-cpobprov').textContent   = cp + ' ' + pob + ' (' + prov + ')';
+  document.getElementById('f-menus').textContent      = menus;
+  document.getElementById('f-punit').textContent      = fmt(precioU);
+  document.getElementById('f-total-bruto').textContent= fmt(total);
+  document.getElementById('f-base').textContent       = fmt(base);
+  document.getElementById('f-iva').textContent        = fmt(iva);
+  document.getElementById('f-total').textContent      = fmt(total);
+  document.getElementById('f-pago').textContent       = '💳 Forma de pago: ' + pago;
 
-  function resetNumFactura() {
-    if (confirm('¿Reiniciar el contador de facturas a ' + AÑO + '_0001?')) {
-      localStorage.setItem(LS_KEY, '0');
-      mostrarNumActual();
-    }
-  }
+} else {
+  // ── MODO CAMARERO: mostrar formulario ──
+  mostrarNumActual();
+}
 
-  // ── Cálculos ────────────────────────────────────
-  function calcularTotales() {
-    const total = parseFloat(document.getElementById('totalIva').value) || 0;
-    const menus = parseInt(document.getElementById('numMenus').value) || 0;
+// ═══════════════════════════════════════
+// UTILIDADES
+// ═══════════════════════════════════════
+function fmt(v) {
+  return v.toFixed(2).replace('.', ',') + ' €';
+}
 
-    const box = document.getElementById('totalesBox');
+// ═══════════════════════════════════════
+// NÚMERO DE FACTURA
+// ═══════════════════════════════════════
+const AÑO    = new Date().getFullYear();
+const LS_KEY = 'casamanolo_numfact_' + AÑO;
 
-    if (total > 0 && menus > 0) {
-      const precioMenu = total / menus;
-      const base = total / 1.10;
-      const iva = total - base;
+function getNumActual()   { return parseInt(localStorage.getItem(LS_KEY) || '0'); }
+function getNumSiguiente(){ const n = getNumActual() + 1; localStorage.setItem(LS_KEY, n); return n; }
+function formatNum(n)     { return AÑO + '_' + String(n).padStart(4, '0'); }
 
-      document.getElementById('linea-desc').textContent = menus + ' Menú' + (menus > 1 ? 's' : '');
-      document.getElementById('linea-importe').textContent = fmt(total);
-      document.getElementById('base-imponible').textContent = fmt(base);
-      document.getElementById('importe-iva').textContent = fmt(iva);
-      document.getElementById('total-final').textContent = fmt(total);
-      box.style.display = 'block';
-    } else {
-      box.style.display = 'none';
-    }
-  }
+function mostrarNumActual() {
+  const siguiente = getNumActual() + 1;
+  document.getElementById('numFactura').value = formatNum(siguiente);
+}
 
-  function fmt(v) {
-    return v.toFixed(2).replace('.', ',') + ' €';
-  }
-
-  // ── Forma de pago ───────────────────────────────
-  function seleccionarPago(tipo, el) {
-    document.querySelectorAll('.pago-btn').forEach(b => b.classList.remove('active'));
-    el.classList.add('active');
-    formaPago = tipo;
-  }
-
-  // ── Generar factura ─────────────────────────────
-  function generarFactura() {
-    // Validaciones
-    const nombre = document.getElementById('nombreCliente').value.trim();
-    const cif = document.getElementById('cifCliente').value.trim();
-    const calle = document.getElementById('calleCliente').value.trim();
-    const cp = document.getElementById('cpCliente').value.trim();
-    const pob = document.getElementById('pobCliente').value.trim();
-    const prov = document.getElementById('provCliente').value.trim();
-    const total = parseFloat(document.getElementById('totalIva').value);
-    const menus = parseInt(document.getElementById('numMenus').value);
-
-    if (!nombre || !cif || !calle || !cp || !pob || !prov) {
-      alert('Por favor, rellena todos los datos del cliente.');
-      return;
-    }
-    if (!total || !menus || total <= 0 || menus <= 0) {
-      alert('Introduce el total de la factura y el número de menús.');
-      return;
-    }
-    if (!formaPago) {
-      alert('Selecciona la forma de pago.');
-      return;
-    }
-
-    // Calcular
-    const base = total / 1.10;
-    const iva = total - base;
-    const precioMenu = total / menus;
-
-    // Incrementar número de factura
-    const num = getNumSiguiente();
-    const numStr = formatNum(num);
-
-    // Fecha actual
-    const hoy = new Date();
-    const fecha = hoy.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
-
-    // Construir HTML de la factura (que irá en la URL del QR)
-    const facturaHtml = generarHtmlFactura({
-      numStr, fecha,
-      nombre, cif, calle, cp, pob, prov,
-      menus, total, base, iva, precioMenu, formaPago
-    });
-
-    // Codificar y crear Data URL
-    const encoded = encodeURIComponent(facturaHtml);
-    const dataUrl = 'data:text/html;charset=utf-8,' + encoded;
-
-    // Generar QR
-    document.getElementById('qrcode').innerHTML = '';
-    new QRCode(document.getElementById('qrcode'), {
-      text: dataUrl,
-      width: 220,
-      height: 220,
-      colorDark: '#1B2A4A',
-      colorLight: '#FFFFFF',
-      correctLevel: QRCode.CorrectLevel.M
-    });
-
-    document.getElementById('numFactDisplay').textContent = 'Factura: ' + numStr;
-    document.getElementById('resultado').style.display = 'block';
-    document.getElementById('resultado').scrollIntoView({ behavior: 'smooth' });
+function resetNumFactura() {
+  if (confirm('¿Reiniciar el contador a ' + AÑO + '_0001?')) {
+    localStorage.setItem(LS_KEY, '0');
     mostrarNumActual();
   }
+}
 
-  // ── HTML de la factura ──────────────────────────
-  function generarHtmlFactura(d) {
-    return `<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Factura ${d.numStr} – Casa Manolo</title>
-<style>
-  body{font-family:Arial,sans-serif;background:#f5f5f0;margin:0;padding:20px;color:#222;}
-  .fact{max-width:600px;margin:0 auto;background:white;border-radius:10px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.12);}
-  .head{background:#1B2A4A;color:white;padding:24px 28px;display:flex;align-items:center;gap:16px;border-bottom:3px solid #C9A84C;}
-  .head img{width:60px;height:60px;border-radius:50%;border:2px solid #C9A84C;}
-  .head .ht h1{font-size:1.2rem;margin:0;}
-  .head .ht p{font-size:.7rem;color:#C9A84C;margin:3px 0 0;letter-spacing:1.5px;text-transform:uppercase;}
-  .cuerpo{padding:24px 28px;}
-  .num-fecha{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
-  .num-badge{background:#1B2A4A;color:white;padding:6px 16px;border-radius:20px;font-size:.8rem;font-weight:700;letter-spacing:1px;}
-  .fecha{font-size:.82rem;color:#888;}
-  .bloque{border:1px solid #e0ddd5;border-radius:8px;padding:14px 18px;margin-bottom:16px;}
-  .bloque h3{font-size:.72rem;text-transform:uppercase;letter-spacing:1px;color:#C9A84C;margin-bottom:8px;font-weight:700;}
-  .bloque p{font-size:.88rem;color:#333;margin:2px 0;line-height:1.5;}
-  table{width:100%;border-collapse:collapse;margin-bottom:16px;}
-  thead tr{background:#1B2A4A;color:white;}
-  th{padding:10px 12px;text-align:left;font-size:.78rem;text-transform:uppercase;letter-spacing:.5px;}
-  th:last-child,td:last-child{text-align:right;}
-  td{padding:11px 12px;border-bottom:1px solid #ece9e2;font-size:.86rem;}
-  .resumen{background:#f8f5ef;border-radius:8px;padding:14px 18px;}
-  .res-linea{display:flex;justify-content:space-between;font-size:.86rem;padding:3px 0;color:#666;}
-  .res-linea.total{font-weight:700;color:#1B2A4A;font-size:1rem;border-top:2px solid #C9A84C;margin-top:8px;padding-top:10px;}
-  .pago-badge{display:inline-block;background:#e8f4ed;color:#2A7C5B;padding:4px 14px;border-radius:20px;font-size:.78rem;font-weight:700;margin-top:12px;}
-  .pie{text-align:center;font-size:.72rem;color:#aaa;padding:16px 24px;border-top:1px solid #ece9e2;line-height:1.8;}
-</style>
-</head>
-<body>
-<div class="fact">
-  <div class="head">
-    <div class="ht">
-      <h1>A3 Casa Manolo SL</h1>
-      <p>Restaurante · Ayamonte</p>
-    </div>
-  </div>
-  <div class="cuerpo">
-    <div class="num-fecha">
-      <span class="num-badge">Factura ${d.numStr}</span>
-      <span class="fecha">Fecha: ${d.fecha}</span>
-    </div>
+// ═══════════════════════════════════════
+// CÁLCULOS
+// ═══════════════════════════════════════
+let formaPago = '';
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
-      <div class="bloque">
-        <h3>Emisor</h3>
-        <p><strong>A3 Casa Manolo SL</strong></p>
-        <p>CIF: B06994305</p>
-        <p>Calle Alicante 4</p>
-        <p>21400 Ayamonte (Huelva)</p>
-      </div>
-      <div class="bloque">
-        <h3>Cliente</h3>
-        <p><strong>${d.nombre}</strong></p>
-        <p>CIF/NIF: ${d.cif}</p>
-        <p>${d.calle}</p>
-        <p>${d.cp} ${d.pob} (${d.prov})</p>
-      </div>
-    </div>
+function calcularTotales() {
+  const total = parseFloat(document.getElementById('totalIva').value) || 0;
+  const menus = parseInt(document.getElementById('numMenus').value)   || 0;
+  const box   = document.getElementById('totalesBox');
 
-    <table>
-      <thead>
-        <tr>
-          <th>Uds.</th>
-          <th>Descripción</th>
-          <th>P. Unit.</th>
-          <th>Importe</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>${d.menus}</td>
-          <td>Menús</td>
-          <td>${d.precioMenu.toFixed(2).replace('.',',')} €</td>
-          <td>${d.total.toFixed(2).replace('.',',')} €</td>
-        </tr>
-      </tbody>
-    </table>
+  if (total > 0 && menus > 0) {
+    const base = total / 1.10;
+    const iva  = total - base;
+    document.getElementById('linea-desc').textContent    = menus + ' Menú' + (menus > 1 ? 's' : '');
+    document.getElementById('linea-importe').textContent = fmt(total);
+    document.getElementById('base-imponible').textContent= fmt(base);
+    document.getElementById('importe-iva').textContent   = fmt(iva);
+    document.getElementById('total-final').textContent   = fmt(total);
+    box.style.display = 'block';
+  } else {
+    box.style.display = 'none';
+  }
+}
 
-    <div class="resumen">
-      <div class="res-linea"><span>Base Imponible</span><span>${d.base.toFixed(2).replace('.',',')} €</span></div>
-      <div class="res-linea"><span>IVA (10%)</span><span>${d.iva.toFixed(2).replace('.',',')} €</span></div>
-      <div class="res-linea total"><span>Total Factura</span><span>${d.total.toFixed(2).replace('.',',')} €</span></div>
-    </div>
-    <div><span class="pago-badge">💳 Forma de pago: ${d.formaPago}</span></div>
-  </div>
-  <div class="pie">
-    A3 Casa Manolo SL · B06994305 · Calle Alicante 4 · 21400 Ayamonte (Huelva)<br>
-    Documento generado electrónicamente
-  </div>
-</div>
-</body>
-</html>`;
+function seleccionarPago(tipo, el) {
+  document.querySelectorAll('.pago-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  formaPago = tipo;
+}
+
+// ═══════════════════════════════════════
+// GENERAR FACTURA Y QR
+// ═══════════════════════════════════════
+function generarFactura() {
+  const nombre = document.getElementById('nombreCliente').value.trim();
+  const cif    = document.getElementById('cifCliente').value.trim();
+  const calle  = document.getElementById('calleCliente').value.trim();
+  const cp     = document.getElementById('cpCliente').value.trim();
+  const pob    = document.getElementById('pobCliente').value.trim();
+  const prov   = document.getElementById('provCliente').value.trim();
+  const total  = parseFloat(document.getElementById('totalIva').value);
+  const menus  = parseInt(document.getElementById('numMenus').value);
+
+  if (!nombre || !cif || !calle || !cp || !pob || !prov) {
+    alert('Por favor, rellena todos los datos del cliente.'); return;
+  }
+  if (!total || !menus || total <= 0 || menus <= 0) {
+    alert('Introduce el total de la factura y el número de menús.'); return;
+  }
+  if (!formaPago) {
+    alert('Selecciona la forma de pago.'); return;
   }
 
-  // ── Nueva factura ───────────────────────────────
-  function nuevaFactura() {
-    document.getElementById('nombreCliente').value = '';
-    document.getElementById('cifCliente').value = '';
-    document.getElementById('calleCliente').value = '';
-    document.getElementById('cpCliente').value = '';
-    document.getElementById('pobCliente').value = '';
-    document.getElementById('provCliente').value = '';
-    document.getElementById('totalIva').value = '';
-    document.getElementById('numMenus').value = '';
-    document.getElementById('totalesBox').style.display = 'none';
-    document.querySelectorAll('.pago-btn').forEach(b => b.classList.remove('active'));
-    formaPago = '';
-    document.getElementById('resultado').style.display = 'none';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
+  const num   = getNumSiguiente();
+  const numStr= formatNum(num);
+  const fecha = new Date().toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
 
-  // ── Init ────────────────────────────────────────
+  // Construir URL corta con parámetros
+  const url = BASE_URL
+    + '?n='   + encodeURIComponent(numStr)
+    + '&f='   + encodeURIComponent(fecha)
+    + '&nom=' + encodeURIComponent(nombre)
+    + '&cif=' + encodeURIComponent(cif)
+    + '&cal=' + encodeURIComponent(calle)
+    + '&cp='  + encodeURIComponent(cp)
+    + '&pob=' + encodeURIComponent(pob)
+    + '&pro=' + encodeURIComponent(prov)
+    + '&tot=' + total.toFixed(2)
+    + '&men=' + menus
+    + '&pag=' + encodeURIComponent(formaPago);
+
+  // Generar QR
+  document.getElementById('qrcode').innerHTML = '';
+  new QRCode(document.getElementById('qrcode'), {
+    text: url,
+    width: 230,
+    height: 230,
+    colorDark: '#1B2A4A',
+    colorLight: '#FFFFFF',
+    correctLevel: QRCode.CorrectLevel.M
+  });
+
+  document.getElementById('numFactDisplay').textContent = 'Factura: ' + numStr;
+  document.getElementById('urlDisplay').textContent = url;
+  document.getElementById('resultado').style.display = 'block';
+  document.getElementById('resultado').scrollIntoView({ behavior: 'smooth' });
   mostrarNumActual();
+}
+
+// ═══════════════════════════════════════
+// NUEVA FACTURA
+// ═══════════════════════════════════════
+function nuevaFactura() {
+  ['nombreCliente','cifCliente','calleCliente','cpCliente','pobCliente','provCliente','totalIva','numMenus']
+    .forEach(id => document.getElementById(id).value = '');
+  document.getElementById('totalesBox').style.display = 'none';
+  document.querySelectorAll('.pago-btn').forEach(b => b.classList.remove('active'));
+  formaPago = '';
+  document.getElementById('resultado').style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 </script>
 </body>
 </html>
