@@ -461,72 +461,26 @@
 
 <script>
 // ═══════════════════════════════════════
-// BASE URL – GitHub Pages
+// 1. CONSTANTES Y VARIABLES GLOBALES
 // ═══════════════════════════════════════
-const BASE_URL = 'https://jhuerga.github.io/FacturasA3/factura-casa-manolo.html';
-
-// ═══════════════════════════════════════
-// DETECTAR MODO: ¿hay parámetros en la URL?
-// ═══════════════════════════════════════
-const params = new URLSearchParams(window.location.search);
-
-if (params.has('n')) {
-  // ── MODO CLIENTE: mostrar factura ──
-  document.getElementById('modo-camarero').style.display = 'none';
-  document.getElementById('vista-factura').style.display = 'block';
-  document.getElementById('header-subtitle').textContent = 'Factura';
-
-  const num    = params.get('n')   || '';
-  const fecha  = params.get('f')   || '';
-  const nombre = params.get('nom') || '';
-  const cif    = params.get('cif') || '';
-  const calle  = params.get('cal') || '';
-  const cp     = params.get('cp')  || '';
-  const pob    = params.get('pob') || '';
-  const prov   = params.get('pro') || '';
-  const total  = parseFloat(params.get('tot') || 0);
-  const menus  = parseInt(params.get('men')   || 0);
-  const pago   = params.get('pag') || '';
-
-  const base     = total / 1.10;
-  const iva      = total - base;
-  const precioU  = menus > 0 ? total / menus : 0;
-
-  document.getElementById('f-num').textContent        = 'Factura ' + num;
-  document.getElementById('f-fecha').textContent      = 'Fecha: ' + fecha;
-  document.getElementById('f-nombre').textContent     = nombre;
-  document.getElementById('f-cif').textContent        = 'CIF/NIF: ' + cif;
-  document.getElementById('f-calle').textContent      = calle;
-  document.getElementById('f-cpobprov').textContent   = cp + ' ' + pob + ' (' + prov + ')';
-  document.getElementById('f-menus').textContent      = menus;
-  document.getElementById('f-punit').textContent      = fmt(precioU);
-  document.getElementById('f-total-bruto').textContent= fmt(total);
-  document.getElementById('f-base').textContent       = fmt(base);
-  document.getElementById('f-iva').textContent        = fmt(iva);
-  document.getElementById('f-total').textContent      = fmt(total);
-  document.getElementById('f-pago').textContent       = '💳 Forma de pago: ' + pago;
-
-} else {
-  // ── MODO CAMARERO: mostrar formulario ──
-  mostrarNumActual();
-}
+const BASE_URL  = 'https://jhuerga.github.io/FacturasA3/factura-casa-manolo.html';
+const AÑO       = new Date().getFullYear();
+const LS_KEY    = 'casamanolo_numfact_' + AÑO;
+let   formaPago = '';
 
 // ═══════════════════════════════════════
-// UTILIDADES
+// 2. UTILIDADES
 // ═══════════════════════════════════════
 function fmt(v) {
   return v.toFixed(2).replace('.', ',') + ' €';
 }
 
 // ═══════════════════════════════════════
-// NÚMERO DE FACTURA
+// 3. NÚMERO DE FACTURA
 // ═══════════════════════════════════════
-const AÑO    = new Date().getFullYear();
-const LS_KEY = 'casamanolo_numfact_' + AÑO;
-
-function getNumActual()   { return parseInt(localStorage.getItem(LS_KEY) || '0'); }
-function getNumSiguiente(){ const n = getNumActual() + 1; localStorage.setItem(LS_KEY, n); return n; }
-function formatNum(n)     { return AÑO + '_' + String(n).padStart(4, '0'); }
+function getNumActual()    { return parseInt(localStorage.getItem(LS_KEY) || '0'); }
+function getNumSiguiente() { const n = getNumActual() + 1; localStorage.setItem(LS_KEY, n); return n; }
+function formatNum(n)      { return AÑO + '_' + String(n).padStart(4, '0'); }
 
 function mostrarNumActual() {
   const siguiente = getNumActual() + 1;
@@ -541,10 +495,8 @@ function resetNumFactura() {
 }
 
 // ═══════════════════════════════════════
-// CÁLCULOS
+// 4. CÁLCULOS DEL FORMULARIO
 // ═══════════════════════════════════════
-let formaPago = '';
-
 function calcularTotales() {
   const total = parseFloat(document.getElementById('totalIva').value) || 0;
   const menus = parseInt(document.getElementById('numMenus').value)   || 0;
@@ -553,11 +505,11 @@ function calcularTotales() {
   if (total > 0 && menus > 0) {
     const base = total / 1.10;
     const iva  = total - base;
-    document.getElementById('linea-desc').textContent    = menus + ' Menú' + (menus > 1 ? 's' : '');
-    document.getElementById('linea-importe').textContent = fmt(total);
-    document.getElementById('base-imponible').textContent= fmt(base);
-    document.getElementById('importe-iva').textContent   = fmt(iva);
-    document.getElementById('total-final').textContent   = fmt(total);
+    document.getElementById('linea-desc').textContent     = menus + ' Menú' + (menus > 1 ? 's' : '');
+    document.getElementById('linea-importe').textContent  = fmt(total);
+    document.getElementById('base-imponible').textContent = fmt(base);
+    document.getElementById('importe-iva').textContent    = fmt(iva);
+    document.getElementById('total-final').textContent    = fmt(total);
     box.style.display = 'block';
   } else {
     box.style.display = 'none';
@@ -571,7 +523,7 @@ function seleccionarPago(tipo, el) {
 }
 
 // ═══════════════════════════════════════
-// GENERAR FACTURA Y QR
+// 5. GENERAR FACTURA Y QR
 // ═══════════════════════════════════════
 function generarFactura() {
   const nombre = document.getElementById('nombreCliente').value.trim();
@@ -593,11 +545,10 @@ function generarFactura() {
     alert('Selecciona la forma de pago.'); return;
   }
 
-  const num   = getNumSiguiente();
-  const numStr= formatNum(num);
-  const fecha = new Date().toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  const num    = getNumSiguiente();
+  const numStr = formatNum(num);
+  const fecha  = new Date().toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
 
-  // Construir URL corta con parámetros
   const url = BASE_URL
     + '?n='   + encodeURIComponent(numStr)
     + '&f='   + encodeURIComponent(fecha)
@@ -611,7 +562,6 @@ function generarFactura() {
     + '&men=' + menus
     + '&pag=' + encodeURIComponent(formaPago);
 
-  // Generar QR
   document.getElementById('qrcode').innerHTML = '';
   new QRCode(document.getElementById('qrcode'), {
     text: url,
@@ -630,7 +580,7 @@ function generarFactura() {
 }
 
 // ═══════════════════════════════════════
-// NUEVA FACTURA
+// 6. NUEVA FACTURA
 // ═══════════════════════════════════════
 function nuevaFactura() {
   ['nombreCliente','cifCliente','calleCliente','cpCliente','pobCliente','provCliente','totalIva','numMenus']
@@ -640,6 +590,52 @@ function nuevaFactura() {
   formaPago = '';
   document.getElementById('resultado').style.display = 'none';
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ═══════════════════════════════════════
+// 7. ARRANQUE – detectar modo
+// ═══════════════════════════════════════
+const params = new URLSearchParams(window.location.search);
+
+if (params.has('n')) {
+  // MODO CLIENTE: mostrar factura
+  document.getElementById('modo-camarero').style.display = 'none';
+  document.getElementById('vista-factura').style.display = 'block';
+  document.getElementById('header-subtitle').textContent = 'Factura';
+
+  const num    = params.get('n')   || '';
+  const fecha  = params.get('f')   || '';
+  const nombre = params.get('nom') || '';
+  const cif    = params.get('cif') || '';
+  const calle  = params.get('cal') || '';
+  const cp     = params.get('cp')  || '';
+  const pob    = params.get('pob') || '';
+  const prov   = params.get('pro') || '';
+  const total  = parseFloat(params.get('tot') || 0);
+  const menus  = parseInt(params.get('men')   || 0);
+  const pago   = params.get('pag') || '';
+
+  const base   = total / 1.10;
+  const iva    = total - base;
+  const precioU = menus > 0 ? total / menus : 0;
+
+  document.getElementById('f-num').textContent         = 'Factura ' + num;
+  document.getElementById('f-fecha').textContent       = 'Fecha: ' + fecha;
+  document.getElementById('f-nombre').textContent      = nombre;
+  document.getElementById('f-cif').textContent         = 'CIF/NIF: ' + cif;
+  document.getElementById('f-calle').textContent       = calle;
+  document.getElementById('f-cpobprov').textContent    = cp + ' ' + pob + ' (' + prov + ')';
+  document.getElementById('f-menus').textContent       = menus;
+  document.getElementById('f-punit').textContent       = fmt(precioU);
+  document.getElementById('f-total-bruto').textContent = fmt(total);
+  document.getElementById('f-base').textContent        = fmt(base);
+  document.getElementById('f-iva').textContent         = fmt(iva);
+  document.getElementById('f-total').textContent       = fmt(total);
+  document.getElementById('f-pago').textContent        = '💳 Forma de pago: ' + pago;
+
+} else {
+  // MODO CAMARERO: mostrar formulario
+  mostrarNumActual();
 }
 </script>
 </body>
