@@ -651,7 +651,7 @@ function fmt(v) {
 const AÑO = new Date().getFullYear();
 const LS_KEY = 'casamanolo_numfact_' + AÑO;
 
-function getNumActual() { return parseInt(locallocalStorage.getItem(LS_KEY) || '0'); }
+function getNumActual() { return parseInt(localStorage.getItem(LS_KEY) || '0'); }
 function getNumSiguiente() { const n = getNumActual() + 1; localStorage.setItem(LS_KEY, n); return n; }
 function formatNum(n) { return AÑO + '_' + String(n).padStart(4, '0'); }
 
