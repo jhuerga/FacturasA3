@@ -512,8 +512,8 @@ input:focus, select:focus {
       <h2>✅ Factura Lista</h2>
       <div class="num-fact-display" id="numFactDisplay"></div>
 
-      <!-- QR EN CANVAS (CORRECTO) -->
-      <canvas id="qrcode" style="margin: 16px auto; display:block;"></canvas>
+      <!-- QR EN CANVAS -->
+      <canvas id="qrcode" width="260" height="260" style="margin: 16px auto; display:block;"></canvas>
 
       <div class="url-factura" id="urlDisplay"></div>
       <button class="btn-nueva" onclick="nuevaFactura()">➕ Nueva Factura</button>
@@ -603,6 +603,33 @@ const BASE_URL = 'https://jhuerga.github.io/FacturasA3/factura-casa-manolo.html'
 // DETECTAR MODO
 const params = new URLSearchParams(window.location.search);
 
+// DECLARAR formaPago ARRIBA (corrección)
+let formaPago = '';
+
+// NÚMERO FACTURA
+const AÑO = new Date().getFullYear();
+const LS_KEY = 'casamanolo_numfact_' + AÑO;
+
+function getNumActual() { 
+  return parseInt(localStorage.getItem(LS_KEY) || '0'); 
+}
+
+function getNumSiguiente() { 
+  const n = getNumActual() + 1; 
+  localStorage.setItem(LS_KEY, n); 
+  return n; 
+}
+
+function formatNum(n) { 
+  return AÑO + '_' + String(n).padStart(4, '0'); 
+}
+
+function mostrarNumActual() {
+  const siguiente = getNumActual() + 1;
+  document.getElementById('numFactura').textContent = formatNum(siguiente);
+}
+
+// MODO CLIENTE
 if (params.has('n')) {
   document.getElementById('modo-camarero').style.display = 'none';
   document.getElementById('vista-factura').style.display = 'block';
@@ -647,29 +674,7 @@ function fmt(v) {
   return v.toFixed(2).replace('.', ',') + ' €';
 }
 
-// NÚMERO FACTURA
-const AÑO = new Date().getFullYear();
-const LS_KEY = 'casamanolo_numfact_' + AÑO;
-
-function getNumActual() { return parseInt(localStorage.getItem(LS_KEY) || '0'); }
-function getNumSiguiente() { const n = getNumActual() + 1; localStorage.setItem(LS_KEY, n); return n; }
-function formatNum(n) { return AÑO + '_' + String(n).padStart(4, '0'); }
-
-function mostrarNumActual() {
-  const siguiente = getNumActual() + 1;
-  document.getElementById('numFactura').textContent = formatNum(siguiente);
-}
-
-function resetNumFactura() {
-  if (confirm('¿Reiniciar el contador a ' + AÑO + '_0001?')) {
-    localStorage.setItem(LS_KEY, '0');
-    mostrarNumActual();
-  }
-}
-
 // CÁLCULOS
-let formaPago = '';
-
 function calcularTotales() {
   const total = parseFloat(document.getElementById('totalIva').value) || 0;
   const menus = parseInt(document.getElementById('numMenus').value) || 0;
@@ -738,17 +743,17 @@ function generarFactura() {
     + '&men=' + menus
     + '&pag=' + encodeURIComponent(formaPago);
 
-  // LIMPIAR CANVAS
-const canvas = document.getElementById('qrcode');
-const ctx = canvas.getContext('2d');
-ctx.clearRect(0, 0, 300, 300);
+  // LIMPIAR CANVAS (corrección)
+  const canvas = document.getElementById('qrcode');
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, 260, 260);
 
   // GENERAR QR
   QRCode.toCanvas(
     canvas,
     url,
     {
-      width: 230,
+      width: 260,
       color: {
         dark: '#d4af37',
         light: '#0d1117'
