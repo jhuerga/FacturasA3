@@ -6,7 +6,7 @@
 <title>A3 Casa Manolo – Facturas</title>
 
 <!-- QR Library -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -736,14 +736,22 @@ function generarFactura() {
     + '&pag=' + encodeURIComponent(formaPago);
 
   document.getElementById('qrcode').innerHTML = '';
-  new QRCode(document.getElementById('qrcode'), {
-    text: url,
-    width: 230,
-    height: 230,
-    colorDark: '#d4af37',
-    colorLight: '#0d1117',
-    correctLevel: QRCode.CorrectLevel.M
-  });
+
+  QRCode.toCanvas(
+       document.getElementById('qrcode'),
+       url,
+      {
+         width: 230,
+        color: {
+        dark: '#d4af37',
+        light: '#0d1117'
+        }
+    },
+    function (error) {
+      if (error) console.error(error);
+    }
+  );
+
 
   document.getElementById('numFactDisplay').textContent = 'Factura: ' + numStr;
   document.getElementById('urlDisplay').textContent = url;
