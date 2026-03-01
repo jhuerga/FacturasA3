@@ -211,6 +211,24 @@
   }
   .btn-nueva:hover { background: var(--navy); color: white; }
 
+  .btn-micopia {
+    display: inline-block;
+    padding: 10px 22px;
+    background: var(--gold);
+    border: 2px solid var(--gold);
+    color: var(--navy);
+    border-radius: 8px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 8px;
+    text-decoration: none;
+    margin-right: 8px;
+  }
+  .btn-micopia:hover { background: #b8942e; border-color: #b8942e; }
+
   /* ── VISTA FACTURA (modo cliente) ── */
   #vista-factura { display: none; }
   .fact { max-width: 640px; margin: 0 auto; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.12); }
@@ -380,6 +398,7 @@
       <div id="qrcode"></div>
       <div class="url-factura" id="urlDisplay"></div>
       <br>
+      <a id="btn-micopia" class="btn-micopia" target="_blank">📄 Ver mi copia</a>
       <button class="btn-nueva" onclick="nuevaFactura()">➕ Nueva Factura</button>
     </div>
 
@@ -574,6 +593,7 @@ function generarFactura() {
 
   document.getElementById('numFactDisplay').textContent = 'Factura: ' + numStr;
   document.getElementById('urlDisplay').textContent = url;
+  document.getElementById('btn-micopia').href = url;
   document.getElementById('resultado').style.display = 'block';
   document.getElementById('resultado').scrollIntoView({ behavior: 'smooth' });
   mostrarNumActual();
