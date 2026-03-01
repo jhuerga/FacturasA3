@@ -4,295 +4,439 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>A3 Casa Manolo – Facturas</title>
+
+<!-- QR Library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap');
+:root {
+  --bg: #0d1117;
+  --card: #161b22;
+  --navy: #0f172a;
+  --gold: #d4af37;
+  --text: #e6e6e6;
+  --muted: #9ca3af;
+  --border: #2a2f3a;
+  --white: #ffffff;
+}
 
-  :root {
-    --navy: #1B2A4A;
-    --gold: #C9A84C;
-    --cream: #F8F5EF;
-    --white: #FFFFFF;
-    --border: #D5CAB7;
-    --text: #2C2C2C;
-    --muted: #7A7A7A;
-  }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Lato', sans-serif;
+  min-height: 100vh;
+}
 
-  body {
-    font-family: 'Lato', sans-serif;
-    background: var(--cream);
-    min-height: 100vh;
-    color: var(--text);
-  }
+/* HEADER */
+header {
+  background: var(--navy);
+  padding: 18px 26px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 3px solid var(--gold);
+}
+header img {
+  width: 58px; height: 58px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  object-fit: cover;
+}
+header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: var(--white);
+}
+header p {
+  color: var(--gold);
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
 
-  /* ── HEADER ── */
-  header {
-    background: var(--navy);
-    padding: 16px 28px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    border-bottom: 3px solid var(--gold);
-  }
-  header img {
-    width: 58px; height: 58px;
-    border-radius: 50%;
-    border: 2px solid var(--gold);
-    object-fit: cover;
-  }
-  header .hinfo h1 { font-family: 'Playfair Display', serif; color: #fff; font-size: 1.25rem; }
-  header .hinfo p  { color: var(--gold); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; font-weight: 300; }
+/* CONTAINER */
+.container {
+  max-width: 680px;
+  margin: 26px auto;
+  padding: 0 18px;
+}
 
-  .container { max-width: 660px; margin: 28px auto; padding: 0 18px; }
+/* CARD */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 26px;
+  margin-bottom: 22px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.35);
+}
+.card h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--gold);
+  font-size: 1.05rem;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--gold);
+}
 
-  /* ── CARD ── */
-  .card {
-    background: var(--white);
-    border-radius: 12px;
-    padding: 28px;
-    box-shadow: 0 4px 18px rgba(27,42,74,0.08);
-    border: 1px solid var(--border);
-    margin-bottom: 20px;
-  }
-  .card h2 {
-    font-family: 'Playfair Display', serif;
-    color: var(--navy);
-    font-size: 0.98rem;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid var(--gold);
-  }
+/* FORM */
+label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+input, select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: #0f131a;
+  color: var(--text);
+  font-size: 0.9rem;
+}
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(212,175,55,0.25);
+}
 
-  /* ── FORM ── */
-  .form-grid  { display: grid; gap: 14px; }
-  .form-row   { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+.form-grid { display: grid; gap: 14px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
 
-  label {
-    display: block;
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: var(--navy);
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    margin-bottom: 5px;
-  }
-  input, select {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1.5px solid var(--border);
-    border-radius: 8px;
-    font-family: 'Lato', sans-serif;
-    font-size: 0.9rem;
-    color: var(--text);
-    background: #FAFAF8;
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-  input:focus, select:focus {
-    outline: none;
-    border-color: var(--gold);
-    box-shadow: 0 0 0 3px rgba(201,168,76,0.15);
-    background: white;
-  }
+/* NUMERO FACTURA */
+.num-box {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+#numFactura {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 1px;
+  padding: 6px 0;
+}
+.btn-sm {
+  padding: 8px 12px;
+  background: transparent;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.75rem;
+}
+.btn-sm:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
 
-  .num-row { display: flex; gap: 8px; align-items: flex-end; }
-  .num-row input { flex: 1; }
-  .btn-sm {
-    padding: 10px 12px;
-    background: transparent;
-    border: 1.5px solid var(--border);
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.72rem;
-    color: var(--muted);
-    white-space: nowrap;
-    transition: all 0.2s;
-    font-family: 'Lato', sans-serif;
-  }
-  .btn-sm:hover { border-color: var(--navy); color: var(--navy); }
+/* TOTALES */
+.totales {
+  background: #11161f;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-top: 6px;
+}
+.tot-linea {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.86rem;
+  padding: 3px 0;
+  color: var(--muted);
+}
+.tot-linea.total {
+  font-weight: 700;
+  color: var(--gold);
+  font-size: 1rem;
+  border-top: 1px solid var(--border);
+  margin-top: 8px;
+  padding-top: 10px;
+}
 
-  /* ── TOTALES ── */
-  .totales {
-    background: var(--cream);
-    border-radius: 10px;
-    padding: 16px 18px;
-    border: 1px solid var(--border);
-    margin-top: 6px;
-  }
-  .tot-linea { display: flex; justify-content: space-between; font-size: 0.86rem; padding: 3px 0; color: var(--muted); }
-  .tot-linea.total { font-weight: 700; color: var(--navy); font-size: 0.98rem; border-top: 1px solid var(--border); margin-top: 8px; padding-top: 10px; }
+/* PAGO */
+.pago-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+.pago-btn {
+  padding: 14px 10px;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  background: #0f131a;
+  color: var(--muted);
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.pago-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.pago-btn.active {
+  background: var(--gold);
+  color: var(--navy);
+  border-color: var(--gold);
+}
 
-  /* ── PAGO ── */
-  .pago-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 6px; }
-  .pago-btn {
-    padding: 12px 8px;
-    border: 2px solid var(--border);
-    border-radius: 10px;
-    background: white;
-    cursor: pointer;
-    text-align: center;
-    font-family: 'Lato', sans-serif;
-    font-size: 0.8rem;
-    color: var(--muted);
-    font-weight: 700;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    transition: all 0.2s;
-  }
-  .pago-btn .ico { font-size: 1.3rem; }
-  .pago-btn:hover { border-color: var(--gold); color: var(--navy); }
-  .pago-btn.active { border-color: var(--navy); background: var(--navy); color: white; }
+/* BOTÓN GENERAR */
+.btn-generar {
+  width: 100%;
+  padding: 16px;
+  background: var(--gold);
+  color: var(--navy);
+  border: none;
+  border-radius: 10px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.btn-generar:hover {
+  background: #e6c75a;
+}
 
-  /* ── BOTÓN GENERAR ── */
-  .btn-generar {
-    width: 100%;
-    padding: 15px;
-    background: var(--navy);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    cursor: pointer;
-    letter-spacing: 0.5px;
-    transition: background 0.2s, transform 0.1s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-  }
-  .btn-generar:hover { background: #243560; }
-  .btn-generar:active { transform: scale(0.99); }
-  .gold { color: var(--gold); }
+/* RESULTADO QR */
+#resultado {
+  display: none;
+  text-align: center;
+}
+.num-fact-display {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--navy);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.url-factura {
+  background: #11161f;
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  color: var(--muted);
+  word-break: break-all;
+  margin-top: 12px;
+}
+.btn-nueva {
+  margin-top: 12px;
+  padding: 10px 22px;
+  border-radius: 8px;
+  border: 2px solid var(--gold);
+  background: transparent;
+  color: var(--gold);
+  cursor: pointer;
+}
+.btn-nueva:hover {
+  background: var(--gold);
+  color: var(--navy);
+}
+/* VISTA FACTURA (CLIENTE) */
+#vista-factura { display: none; }
 
-  /* ── RESULTADO ── */
-  #resultado { display: none; text-align: center; }
-  #resultado h2 { font-family: 'Playfair Display', serif; color: var(--navy); font-size: 1.05rem; margin-bottom: 4px; }
-  .sub { color: var(--muted); font-size: 0.82rem; margin-bottom: 20px; }
-  #qrcode { display: inline-block; padding: 14px; background: white; border: 2px solid var(--border); border-radius: 12px; margin-bottom: 16px; }
-  .num-fact-display {
-    display: inline-block;
-    background: var(--navy);
-    color: white;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    padding: 5px 16px;
-    border-radius: 20px;
-    margin-bottom: 14px;
-  }
-  .url-factura {
-    font-size: 0.72rem;
-    color: var(--muted);
-    word-break: break-all;
-    margin-bottom: 16px;
-    padding: 8px 12px;
-    background: var(--cream);
-    border-radius: 8px;
-    border: 1px solid var(--border);
-  }
-  .btn-nueva {
-    display: inline-block;
-    padding: 10px 22px;
-    background: transparent;
-    border: 2px solid var(--navy);
-    color: var(--navy);
-    border-radius: 8px;
-    font-family: 'Lato', sans-serif;
-    font-weight: 700;
-    font-size: 0.85rem;
-    cursor: pointer;
-    transition: all 0.2s;
-    margin-top: 8px;
-  }
-  .btn-nueva:hover { background: var(--navy); color: white; }
+.fact {
+  max-width: 680px;
+  margin: 0 auto;
+  background: var(--card);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.45);
+}
+.fact-head {
+  background: var(--navy);
+  padding: 22px 26px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 3px solid var(--gold);
+}
+.fact-head img {
+  width: 58px; height: 58px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  object-fit: cover;
+}
+.fact-head h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: var(--white);
+}
+.fact-head p {
+  font-size: 0.75rem;
+  color: var(--gold);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
 
-  /* ── VISTA FACTURA (modo cliente) ── */
-  #vista-factura { display: none; }
-  .fact { max-width: 640px; margin: 0 auto; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.12); }
-  .fact-head { background: #1B2A4A; color: white; padding: 22px 26px; display: flex; align-items: center; gap: 16px; border-bottom: 3px solid #C9A84C; }
-  .fact-head img { width: 58px; height: 58px; border-radius: 50%; border: 2px solid #C9A84C; object-fit: cover; }
-  .fact-head .ht h1 { font-family: 'Playfair Display', serif; font-size: 1.15rem; margin: 0; }
-  .fact-head .ht p  { font-size: 0.7rem; color: #C9A84C; margin: 3px 0 0; letter-spacing: 1.5px; text-transform: uppercase; }
-  .fact-body { padding: 22px 26px; }
-  .num-fecha { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 8px; }
-  .num-badge { background: #1B2A4A; color: white; padding: 5px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; letter-spacing: 1px; }
-  .f-fecha { font-size: 0.82rem; color: #888; }
-  .bloques { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
-  .bloque { border: 1px solid #e0ddd5; border-radius: 8px; padding: 12px 16px; }
-  .bloque h3 { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #C9A84C; margin-bottom: 6px; font-weight: 700; }
-  .bloque p  { font-size: 0.84rem; color: #333; margin: 2px 0; line-height: 1.5; }
-  .f-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
-  .f-table thead tr { background: #1B2A4A; color: white; }
-  .f-table th { padding: 9px 12px; text-align: left; font-size: 0.76rem; text-transform: uppercase; letter-spacing: .5px; }
-  .f-table th:last-child, .f-table td:last-child { text-align: right; }
-  .f-table td { padding: 10px 12px; border-bottom: 1px solid #ece9e2; font-size: 0.84rem; }
-  .resumen { background: #f8f5ef; border-radius: 8px; padding: 14px 18px; }
-  .res-linea { display: flex; justify-content: space-between; font-size: 0.84rem; padding: 3px 0; color: #666; }
-  .res-linea.total { font-weight: 700; color: #1B2A4A; font-size: 0.98rem; border-top: 2px solid #C9A84C; margin-top: 8px; padding-top: 10px; }
-  .pago-badge { display: inline-block; background: #e8f4ed; color: #2A7C5B; padding: 4px 14px; border-radius: 20px; font-size: 0.76rem; font-weight: 700; margin-top: 12px; }
-  .fact-pie { text-align: center; font-size: 0.7rem; color: #aaa; padding: 14px 22px; border-top: 1px solid #ece9e2; line-height: 1.9; }
+.fact-body {
+  padding: 22px 26px;
+}
+.num-fecha {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.num-badge {
+  background: var(--gold);
+  color: var(--navy);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+.f-fecha {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
 
-  .btn-print {
-    display: block;
-    margin: 16px auto 0;
-    padding: 11px 28px;
-    background: var(--navy);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-family: 'Lato', sans-serif;
-    font-weight: 700;
-    font-size: 0.88rem;
-    cursor: pointer;
-  }
+.bloques {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.bloque {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  background: #0f131a;
+}
+.bloque h3 {
+  color: var(--gold);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.bloque p {
+  font-size: 0.9rem;
+  color: var(--text);
+  margin: 2px 0;
+}
 
-  .pie { font-size: 0.74rem; color: var(--muted); text-align: center; padding: 8px 0 20px; line-height: 1.8; }
+.f-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+}
+.f-table thead tr {
+  background: var(--navy);
+  color: var(--white);
+}
+.f-table th {
+  padding: 10px 12px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+.f-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+.f-table th:last-child, .f-table td:last-child {
+  text-align: right;
+}
 
-  @media print {
-    header, .btn-print, .pie { display: none !important; }
-    body { background: white; }
-    .fact { box-shadow: none; }
-  }
+.resumen {
+  background: #11161f;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 18px;
+}
+.res-linea {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  color: var(--muted);
+}
+.res-linea.total {
+  font-weight: 700;
+  color: var(--gold);
+  font-size: 1rem;
+  border-top: 2px solid var(--gold);
+  margin-top: 8px;
+  padding-top: 10px;
+}
 
-  @media(max-width:480px) {
-    .form-row, .form-row-3 { grid-template-columns: 1fr; }
-    .bloques { grid-template-columns: 1fr; }
-    .card { padding: 20px 16px; }
-  }
+.pago-badge {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--navy);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: 700;
+  margin-top: 14px;
+}
+
+.fact-pie {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--muted);
+  padding: 14px 22px;
+  border-top: 1px solid var(--border);
+}
+
+.btn-print {
+  display: block;
+  margin: 18px auto;
+  padding: 12px 28px;
+  background: var(--gold);
+  color: var(--navy);
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* RESPONSIVE */
+@media(max-width:480px) {
+  .form-row, .form-row-3 { grid-template-columns: 1fr; }
+  .bloques { grid-template-columns: 1fr; }
+  .card { padding: 20px 16px; }
+}
 </style>
 </head>
+
 <body>
 
-<!-- ════════════════════════════════════════════
-     CABECERA (siempre visible)
-════════════════════════════════════════════ -->
 <header>
   <img src="logo_casamanolo.png" alt="Logo" onerror="this.style.display='none'">
-  <div class="hinfo">
+  <div>
     <h1>A3 Casa Manolo SL</h1>
     <p id="header-subtitle">Generador de Facturas</p>
   </div>
 </header>
 
-<!-- ════════════════════════════════════════════
-     MODO CAMARERO – Formulario
-════════════════════════════════════════════ -->
+<!-- MODO CAMARERO -->
 <div id="modo-camarero">
   <div class="container">
 
     <div class="card">
       <h2>🔢 Número de Factura</h2>
-      <div>
-        <label>Nº Factura (automático)</label>
-        
-          <div id="numFactura" style="font-size:1.1rem;font-weight:700;color:#1B2A4A;letter-spacing:1px;padding:6px 0;"></div>
-          <button class="btn-sm" onclick="resetNumFactura()">↺ Reiniciar</button>
-        </div>
+      <label>Nº Factura (automático)</label>
+      <div class="num-box">
+        <div id="numFactura"></div>
+        <button class="btn-sm" onclick="resetNumFactura()">↺ Reiniciar</button>
       </div>
     </div>
 
@@ -301,28 +445,28 @@
       <div class="form-grid">
         <div>
           <label>Nombre / Razón Social *</label>
-          <input type="text" id="nombreCliente" placeholder="Nombre del cliente">
+          <input type="text" id="nombreCliente">
         </div>
         <div>
           <label>CIF / NIF *</label>
-          <input type="text" id="cifCliente" placeholder="B12345678">
+          <input type="text" id="cifCliente">
         </div>
         <div>
           <label>Calle y Número *</label>
-          <input type="text" id="calleCliente" placeholder="Calle Mayor, 10">
+          <input type="text" id="calleCliente">
         </div>
         <div class="form-row-3">
           <div>
             <label>C.P. *</label>
-            <input type="text" id="cpCliente" placeholder="28001" maxlength="5">
+            <input type="text" id="cpCliente" maxlength="5">
           </div>
           <div>
             <label>Población *</label>
-            <input type="text" id="pobCliente" placeholder="Madrid">
+            <input type="text" id="pobCliente">
           </div>
           <div>
             <label>Provincia *</label>
-            <input type="text" id="provCliente" placeholder="Madrid">
+            <input type="text" id="provCliente">
           </div>
         </div>
       </div>
@@ -334,13 +478,14 @@
         <div class="form-row">
           <div>
             <label>Total con IVA incluido (€) *</label>
-            <input type="number" id="totalIva" placeholder="0.00" step="0.01" min="0" oninput="calcularTotales()">
+            <input type="number" id="totalIva" step="0.01" min="0" oninput="calcularTotales()">
           </div>
           <div>
             <label>Número de Menús *</label>
-            <input type="number" id="numMenus" placeholder="0" min="1" oninput="calcularTotales()">
+            <input type="number" id="numMenus" min="1" oninput="calcularTotales()">
           </div>
         </div>
+
         <div class="totales" id="totalesBox" style="display:none">
           <div class="tot-linea">
             <span id="linea-desc">—</span>
@@ -352,63 +497,46 @@
         </div>
       </div>
     </div>
-
     <div class="card">
       <h2>💳 Forma de Pago</h2>
       <div class="pago-grid">
-        <button class="pago-btn" onclick="seleccionarPago('Tarjeta', this)">
-          <span class="ico">💳</span> Tarjeta
-        </button>
-        <button class="pago-btn" onclick="seleccionarPago('Transferencia', this)">
-          <span class="ico">🏦</span> Transferencia
-        </button>
-        <button class="pago-btn" onclick="seleccionarPago('Metálico', this)">
-          <span class="ico">💵</span> Metálico
-        </button>
+        <button class="pago-btn" onclick="seleccionarPago('Tarjeta', this)">💳 Tarjeta</button>
+        <button class="pago-btn" onclick="seleccionarPago('Transferencia', this)">🏦 Transferencia</button>
+        <button class="pago-btn" onclick="seleccionarPago('Metálico', this)">💵 Metálico</button>
       </div>
     </div>
 
-    <button class="btn-generar" onclick="generarFactura()">
-      <span class="gold">▶</span> Generar QR de Factura
-    </button>
+    <button class="btn-generar" onclick="generarFactura()">Generar QR de Factura</button>
 
-    <!-- Resultado QR -->
-    <div class="card" id="resultado" style="margin-top:20px; display:none">
+    <div class="card" id="resultado">
       <h2>✅ Factura Lista</h2>
-      <div class="num-fact-display" id="numFactDisplay"></div><br>
-      <p class="sub">El cliente escanea el QR con su móvil y abre la factura al instante.</p>
-      <div id="qrcode"></div>
+      <div class="num-fact-display" id="numFactDisplay"></div>
+      <div id="qrcode" style="margin: 16px auto;"></div>
       <div class="url-factura" id="urlDisplay"></div>
-      <br>
       <button class="btn-nueva" onclick="nuevaFactura()">➕ Nueva Factura</button>
-    </div>
-
-    <div class="pie">
-      A3 Casa Manolo SL · B06994305<br>
-      Calle Alicante 4 · 21400 Ayamonte (Huelva)
     </div>
 
   </div>
 </div>
 
-<!-- ════════════════════════════════════════════
-     MODO CLIENTE – Vista de la factura
-════════════════════════════════════════════ -->
+<!-- MODO CLIENTE -->
 <div id="vista-factura">
   <div class="container">
     <div class="fact">
       <div class="fact-head">
-        <img src="logo_casamanolo.png" alt="Logo" onerror="this.style.display='none'">
-        <div class="ht">
+        <img src="logo_casamanolo.png" alt="Logo">
+        <div>
           <h1>A3 Casa Manolo SL</h1>
           <p>Restaurante · Ayamonte</p>
         </div>
       </div>
+
       <div class="fact-body">
         <div class="num-fecha">
           <span class="num-badge" id="f-num"></span>
           <span class="f-fecha" id="f-fecha"></span>
         </div>
+
         <div class="bloques">
           <div class="bloque">
             <h3>Emisor</h3>
@@ -417,6 +545,7 @@
             <p>Calle Alicante 4</p>
             <p>21400 Ayamonte (Huelva)</p>
           </div>
+
           <div class="bloque">
             <h3>Cliente</h3>
             <p><strong id="f-nombre"></strong></p>
@@ -425,6 +554,7 @@
             <p id="f-cpobprov"></p>
           </div>
         </div>
+
         <table class="f-table">
           <thead>
             <tr>
@@ -443,90 +573,84 @@
             </tr>
           </tbody>
         </table>
+
         <div class="resumen">
           <div class="res-linea"><span>Base Imponible</span><span id="f-base"></span></div>
           <div class="res-linea"><span>IVA (10%)</span><span id="f-iva"></span></div>
           <div class="res-linea total"><span>Total Factura</span><span id="f-total"></span></div>
         </div>
-        <div><span class="pago-badge" id="f-pago"></span></div>
+
+        <span class="pago-badge" id="f-pago"></span>
       </div>
+
       <div class="fact-pie">
         A3 Casa Manolo SL · B06994305 · Calle Alicante 4 · 21400 Ayamonte (Huelva)<br>
         Documento generado electrónicamente
       </div>
     </div>
+
     <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Guardar PDF</button>
   </div>
 </div>
 
 <script>
-// ═══════════════════════════════════════
-// BASE URL – GitHub Pages
-// ═══════════════════════════════════════
+// BASE URL
 const BASE_URL = 'https://jhuerga.github.io/FacturasA3/factura-casa-manolo.html';
 
-// ═══════════════════════════════════════
-// DETECTAR MODO: ¿hay parámetros en la URL?
-// ═══════════════════════════════════════
+// DETECTAR MODO
 const params = new URLSearchParams(window.location.search);
 
 if (params.has('n')) {
-  // ── MODO CLIENTE: mostrar factura ──
   document.getElementById('modo-camarero').style.display = 'none';
   document.getElementById('vista-factura').style.display = 'block';
   document.getElementById('header-subtitle').textContent = 'Factura';
 
-  const num    = params.get('n')   || '';
-  const fecha  = params.get('f')   || '';
-  const nombre = params.get('nom') || '';
-  const cif    = params.get('cif') || '';
-  const calle  = params.get('cal') || '';
-  const cp     = params.get('cp')  || '';
-  const pob    = params.get('pob') || '';
-  const prov   = params.get('pro') || '';
-  const total  = parseFloat(params.get('tot') || 0);
-  const menus  = parseInt(params.get('men')   || 0);
-  const pago   = params.get('pag') || '';
+  const num    = params.get('n');
+  const fecha  = params.get('f');
+  const nombre = params.get('nom');
+  const cif    = params.get('cif');
+  const calle  = params.get('cal');
+  const cp     = params.get('cp');
+  const pob    = params.get('pob');
+  const prov   = params.get('pro');
+  const total  = parseFloat(params.get('tot'));
+  const menus  = parseInt(params.get('men'));
+  const pago   = params.get('pag');
 
-  const base     = total / 1.10;
-  const iva      = total - base;
-  const precioU  = menus > 0 ? total / menus : 0;
+  const base = total / 1.10;
+  const iva  = total - base;
+  const punit = total / menus;
 
-  document.getElementById('f-num').textContent        = 'Factura ' + num;
-  document.getElementById('f-fecha').textContent      = 'Fecha: ' + fecha;
-  document.getElementById('f-nombre').textContent     = nombre;
-  document.getElementById('f-cif').textContent        = 'CIF/NIF: ' + cif;
-  document.getElementById('f-calle').textContent      = calle;
-  document.getElementById('f-cpobprov').textContent   = cp + ' ' + pob + ' (' + prov + ')';
-  document.getElementById('f-menus').textContent      = menus;
-  document.getElementById('f-punit').textContent      = fmt(precioU);
-  document.getElementById('f-total-bruto').textContent= fmt(total);
-  document.getElementById('f-base').textContent       = fmt(base);
-  document.getElementById('f-iva').textContent        = fmt(iva);
-  document.getElementById('f-total').textContent      = fmt(total);
-  document.getElementById('f-pago').textContent       = '💳 Forma de pago: ' + pago;
+  document.getElementById('f-num').textContent = 'Factura ' + num;
+  document.getElementById('f-fecha').textContent = 'Fecha: ' + fecha;
+  document.getElementById('f-nombre').textContent = nombre;
+  document.getElementById('f-cif').textContent = 'CIF/NIF: ' + cif;
+  document.getElementById('f-calle').textContent = calle;
+  document.getElementById('f-cpobprov').textContent = cp + ' ' + pob + ' (' + prov + ')';
+  document.getElementById('f-menus').textContent = menus;
+  document.getElementById('f-punit').textContent = fmt(punit);
+  document.getElementById('f-total-bruto').textContent = fmt(total);
+  document.getElementById('f-base').textContent = fmt(base);
+  document.getElementById('f-iva').textContent = fmt(iva);
+  document.getElementById('f-total').textContent = fmt(total);
+  document.getElementById('f-pago').textContent = 'Forma de pago: ' + pago;
 
 } else {
-  // ── MODO CAMARERO: mostrar formulario ──
   mostrarNumActual();
 }
 
-// ═══════════════════════════════════════
 // UTILIDADES
-// ═══════════════════════════════════════
 function fmt(v) {
   return v.toFixed(2).replace('.', ',') + ' €';
 }
 
-// ═══════════════════════════════════════
-// NÚMERO DE FACTURA
-// ═══════════════════════════════════════
-const AÑO    = new Date().getFullYear();
+// NÚMERO FACTURA
+const AÑO = new Date().getFullYear();
 const LS_KEY = 'casamanolo_numfact_' + AÑO;
 
-function getNumActual()   { return parseInt(localStorage.getItem(LS_KEY) || '0'); }
-function getNumSiguiente(){ const n = getNumActual() + 1; localStorage.setItem(LS_KEY, n); return n; }
-function formatNum(n)     { return AÑO + '_' + String(n).padStart(4, '0'); }
+function getNumActual() { return parseInt(localStorage.getItem(LS_KEY) || '0'); }
+function getNumSiguiente() { const n = getNumActual() + 1; localStorage.setItem(LS_KEY, n); return n; }
+function formatNum(n) { return AÑO + '_' + String(n).padStart(4, '0'); }
 
 function mostrarNumActual() {
   const siguiente = getNumActual() + 1;
@@ -540,24 +664,24 @@ function resetNumFactura() {
   }
 }
 
-// ═══════════════════════════════════════
 // CÁLCULOS
-// ═══════════════════════════════════════
 let formaPago = '';
 
 function calcularTotales() {
   const total = parseFloat(document.getElementById('totalIva').value) || 0;
-  const menus = parseInt(document.getElementById('numMenus').value)   || 0;
-  const box   = document.getElementById('totalesBox');
+  const menus = parseInt(document.getElementById('numMenus').value) || 0;
+  const box = document.getElementById('totalesBox');
 
   if (total > 0 && menus > 0) {
     const base = total / 1.10;
     const iva  = total - base;
-    document.getElementById('linea-desc').textContent    = menus + ' Menú' + (menus > 1 ? 's' : '');
+
+    document.getElementById('linea-desc').textContent = menus + ' Menú' + (menus > 1 ? 's' : '');
     document.getElementById('linea-importe').textContent = fmt(total);
-    document.getElementById('base-imponible').textContent= fmt(base);
-    document.getElementById('importe-iva').textContent   = fmt(iva);
-    document.getElementById('total-final').textContent   = fmt(total);
+    document.getElementById('base-imponible').textContent = fmt(base);
+    document.getElementById('importe-iva').textContent = fmt(iva);
+    document.getElementById('total-final').textContent = fmt(total);
+
     box.style.display = 'block';
   } else {
     box.style.display = 'none';
@@ -570,9 +694,7 @@ function seleccionarPago(tipo, el) {
   formaPago = tipo;
 }
 
-// ═══════════════════════════════════════
-// GENERAR FACTURA Y QR
-// ═══════════════════════════════════════
+// GENERAR FACTURA
 function generarFactura() {
   const nombre = document.getElementById('nombreCliente').value.trim();
   const cif    = document.getElementById('cifCliente').value.trim();
@@ -584,41 +706,42 @@ function generarFactura() {
   const menus  = parseInt(document.getElementById('numMenus').value);
 
   if (!nombre || !cif || !calle || !cp || !pob || !prov) {
-    alert('Por favor, rellena todos los datos del cliente.'); return;
+    alert('Por favor, rellena todos los datos del cliente.');
+    return;
   }
   if (!total || !menus || total <= 0 || menus <= 0) {
-    alert('Introduce el total de la factura y el número de menús.'); return;
+    alert('Introduce el total y el número de menús.');
+    return;
   }
   if (!formaPago) {
-    alert('Selecciona la forma de pago.'); return;
+    alert('Selecciona la forma de pago.');
+    return;
   }
 
-  const num   = getNumSiguiente();
-  const numStr= formatNum(num);
-  const fecha = new Date().toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  const num = getNumSiguiente();
+  const numStr = formatNum(num);
+  const fecha = new Date().toLocaleDateString('es-ES');
 
-  // Construir URL corta con parámetros
   const url = BASE_URL
-    + '?n='   + encodeURIComponent(numStr)
-    + '&f='   + encodeURIComponent(fecha)
+    + '?n=' + encodeURIComponent(numStr)
+    + '&f=' + encodeURIComponent(fecha)
     + '&nom=' + encodeURIComponent(nombre)
     + '&cif=' + encodeURIComponent(cif)
     + '&cal=' + encodeURIComponent(calle)
-    + '&cp='  + encodeURIComponent(cp)
+    + '&cp=' + encodeURIComponent(cp)
     + '&pob=' + encodeURIComponent(pob)
     + '&pro=' + encodeURIComponent(prov)
     + '&tot=' + total.toFixed(2)
     + '&men=' + menus
     + '&pag=' + encodeURIComponent(formaPago);
 
-  // Generar QR
   document.getElementById('qrcode').innerHTML = '';
   new QRCode(document.getElementById('qrcode'), {
     text: url,
     width: 230,
     height: 230,
-    colorDark: '#1B2A4A',
-    colorLight: '#FFFFFF',
+    colorDark: '#d4af37',
+    colorLight: '#0d1117',
     correctLevel: QRCode.CorrectLevel.M
   });
 
@@ -626,21 +749,23 @@ function generarFactura() {
   document.getElementById('urlDisplay').textContent = url;
   document.getElementById('resultado').style.display = 'block';
   document.getElementById('resultado').scrollIntoView({ behavior: 'smooth' });
+
   mostrarNumActual();
 }
 
-// ═══════════════════════════════════════
 // NUEVA FACTURA
-// ═══════════════════════════════════════
 function nuevaFactura() {
   ['nombreCliente','cifCliente','calleCliente','cpCliente','pobCliente','provCliente','totalIva','numMenus']
     .forEach(id => document.getElementById(id).value = '');
+
   document.getElementById('totalesBox').style.display = 'none';
   document.querySelectorAll('.pago-btn').forEach(b => b.classList.remove('active'));
   formaPago = '';
   document.getElementById('resultado').style.display = 'none';
+
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
+
 </body>
 </html>
